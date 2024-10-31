@@ -1,0 +1,135 @@
+/* Estilos para el fondo del modal */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    /* Asegúrate de que esté en la parte superior */
+}
+
+/* Estilos para el contenido del modal */
+.comicDetails {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 600px;
+    /* Ancho máximo del modal */
+    max-height: 80vh;
+    /* Altura máxima del modal */
+    overflow-y: auto;
+    /* Habilita el desplazamiento vertical */
+    width: 600px;
+    background: radial-gradient(circle, rgba(96,79,74,1) 0%, rgba(219,197,197,1) 100%);
+    text-align:left;
+}
+
+.titulo {
+    text-align: center;
+}
+
+/* Estilo para la tarjeta dentro del modal */
+.comicCard {
+    border: 1px solid #ddd;
+    /* Borde de la tarjeta */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    padding: 10px;
+    /* Espaciado interno */
+    margin-bottom: 15px;
+    /* Espaciado inferior */
+}
+
+/* Estilo para la imagen del cómic */
+.comicImage {
+    width: 100px;
+    /* Ancho fijo para la imagen */
+    height: auto;
+    /* Mantiene la relación de aspecto */
+    margin: 10px 0;
+    /* Espaciado vertical */
+}
+
+.charactersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Centra los personajes */
+    margin-top: 15px;
+    /* Espaciado superior */
+}
+
+.characterCard {
+
+    margin: 10px;
+    /* Espaciado entre tarjetas de personajes */
+    text-align: center;
+    /* Centra el texto */
+}
+
+.characterImage {
+    border-radius: 50%;
+    width: 80px;
+    /* Ancho de las imágenes de personajes */
+    height: auto;
+    /* Mantiene la relación de aspecto */
+}
+
+.botones{
+    text-align: center;
+}
+
+.closeButton {
+    height: 50px;
+    background-color: red;
+    /* Color de fondo rojo */
+    color: white;
+    /* Color del texto blanco */
+    border: none;
+    /* Sin borde */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    padding: 10px 20px;
+    /* Espaciado interno */
+    font-size: 16px;
+    /* Tamaño de la fuente */
+    cursor: pointer;
+    /* Cambia el cursor al pasar el mouse */
+    transition: background-color 0.3s;
+    /* Transición suave para el hover */
+}
+
+.closeButton:hover {
+    background-color: darkred;
+    /* Cambia a un rojo más oscuro al pasar el mouse */
+}
+
+.favoriteButton {
+    height: 50px;
+    background-color: grey; /* Color de fondo gris por defecto */
+    color: white; /* Color del texto blanco */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    font-size: 24px; /* Tamaño de la fuente */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    transition: background-color 0.3s; /* Transición suave para el hover */
+    margin-left: 10px; /* Espaciado entre los botones */
+  }
+  
+  .favoriteButton.favorite {
+    background-color: red; /* Color de fondo rojo si es favorito */
+  }
+  
+  .favoriteButton.notFavorite:hover {
+    background-color: darkgrey; /* Cambia a un gris más oscuro al pasar el mouse */
+  }
+  
+  .favoriteButton.favorite:hover {
+    background-color: darkred; /* Cambia a un rojo más oscuro al pasar el mouse */
+  }

@@ -1,0 +1,55 @@
+.gridStyle {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Ajusta el tamaño mínimo según sea necesario */
+  gap: 16px; /* Espacio entre las tarjetas */
+  padding: 20px; /* Espacio interior del contenedor */
+}
+
+.comicCardStyle {
+  border: 1px solid #ddd; /* Borde de la tarjeta */
+  border-radius: 8px; /* Bordes redondeados */
+  padding: 10px; /* Espacio interior de la tarjeta */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para efecto de elevación */
+  text-align: center; /* Centrar texto */
+  flex: 0 1 150px; /* Tamaño mínimo de la tarjeta */
+  max-width: 250px; /* Limitar el ancho máximo de la tarjeta */
+  transition: background-color 0.3s;
+  background: radial-gradient(circle, rgba(96,79,74,1) 0%, rgba(219,197,197,1) 100%);
+}
+.comicCardStyle:hover {
+  background: radial-gradient(circle, rgba(233,213,213,1) 100%, rgba(209,15,15,1) 100%);
+  cursor: pointer;
+}
+
+.whiteTitle {
+  color: white;
+}
+
+.comicCardStyle img {
+  width: 100%; /* Hacer que la imagen ocupe todo el ancho de la tarjeta */
+  height: auto; /* Mantener la proporción de la imagen */
+}
+
+.comicCardStyle.favoriteCard {
+  background: radial-gradient(circle, rgba(233,213,213,1) 100%, rgba(209,15,15,1) 100%);
+}
+
+/* Estilos para el botón de favoritos */
+.favoriteButton {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 24px; /* Tamaño del icono */
+}
+
+.favoriteButton.favorite {
+  color: red; /* Corazón lleno */
+}
+
+.favoriteButton.notFavorite {
+  color: gray; /* Corazón vacío */
+}
+
+.comicTitle{
+  height: 100px;
+}
