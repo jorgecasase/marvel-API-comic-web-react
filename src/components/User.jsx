@@ -10,6 +10,25 @@ const User = () => {
         return user ? JSON.parse(user) : null;
     });
 
+    const enviarDatosAPI = async (datos) => {
+        try {
+            const respuesta = await fetch('https://api.marvellibrary.com/registroyfavoritos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(datos),
+            });
+    
+            if (respuesta.ok) {
+                console.log('Usuario registrado correctamente');
+            } else {
+                console.log('Error al registrar usuario con backend API ficticia');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -24,8 +43,12 @@ const User = () => {
         onSubmit: (values) => {
             localStorage.setItem('user', JSON.stringify(values));
             setIsRegistered(values);
+            console.log(values, localStorage.getItem('favorites'));
+            enviarDatosAPI(values, localStorage.getItem('favorites'));
         },
     });
+
+    
 
     const handleLogout = () => {
         localStorage.removeItem('user');
@@ -44,7 +67,6 @@ const User = () => {
                 comicsData.push({
                     id: comic.id,
                     title: comic.title,
-                    description: comic.description || "Sin descripción", // Manejo de posibles nulls
                     pageCount: comic.pageCount || "No disponible",
                     modified: comic.modified.slice(0, 10), // Formato de fecha
                 });
@@ -54,11 +76,11 @@ const User = () => {
         }
 
         const csvContent = [
-            ['ID', 'Título', 'Descripción', 'Número de Páginas', 'Fecha de Modificación'], // Encabezados
-            ...comicsData.map(comic => [comic.id, comic.title, comic.description, comic.pageCount, comic.modified]) // Cada fila de datos
+            ['ID', 'Título', 'Número de Páginas', 'Fecha de Modificación'], // Encabezados
+            ...comicsData.map(comic => [comic.id, comic.title, comic.pageCount, comic.modified]) // Cada fila de datos
         ]
-        .map(e => e.join(","))
-        .join("\n");
+            .map(e => e.join(","))
+            .join("\n");
 
         const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
         const link = document.createElement('a');
