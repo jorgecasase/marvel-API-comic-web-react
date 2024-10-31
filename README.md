@@ -1,4 +1,4 @@
-# Marvel Comics Website using React and Marvel API proyect
+# Marvel Comics Website proyect using React and Marvel API
 
 Website that uses the Marvel API to list the latest comics published and save them to favorites.
 
