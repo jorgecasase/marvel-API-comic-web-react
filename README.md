@@ -19,6 +19,15 @@ Profile component: review your favorites list and register with YUP and FORMIK t
 <img src="https://github.com/jorgecasase/marvel-API-comic-web-react/blob/main/images/5.png"/>
 <img src="https://github.com/jorgecasase/marvel-API-comic-web-react/blob/main/images/6.png"/>
 
-Send user data and favorites list to back-end API:
+Send user data and favorites list to back-end API with POST:
 
 <img src="https://github.com/jorgecasase/marvel-API-comic-web-react/blob/main/images/7.png"/>
+<img src="https://github.com/jorgecasase/marvel-API-comic-web-react/blob/main/images/8.png"/>
+
+Login:
+
+<img src="https://github.com/jorgecasase/marvel-API-comic-web-react/blob/main/images/9.png"/>
+
+Download your favorites csv:
+
+<img src="https://github.com/jorgecasase/marvel-API-comic-web-react/blob/main/images/10.png"/>
