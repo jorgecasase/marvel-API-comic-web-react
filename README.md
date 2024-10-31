@@ -13,3 +13,12 @@ Like function:
 
 <img src="https://github.com/jorgecasase/marvel-API-comic-web-react/blob/main/images/3.png"/>
 <img src="https://github.com/jorgecasase/marvel-API-comic-web-react/blob/main/images/4.png"/>
+
+Profile component: review your favorites list and register with YUP and FORMIK to download a csv of your favorites.
+
+<img src="https://github.com/jorgecasase/marvel-API-comic-web-react/blob/main/images/5.png"/>
+<img src="https://github.com/jorgecasase/marvel-API-comic-web-react/blob/main/images/6.png"/>
+
+Send user data and favorites list to back-end API:
+
+<img src="https://github.com/jorgecasase/marvel-API-comic-web-react/blob/main/images/7.png"/>
