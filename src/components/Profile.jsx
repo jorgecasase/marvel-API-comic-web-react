@@ -1,4 +1,3 @@
-// Profile.jsx
 import React from 'react';
 import FavoritesList from './FavoritesList';
 import User from './User';

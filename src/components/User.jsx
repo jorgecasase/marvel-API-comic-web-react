@@ -1,4 +1,3 @@
-// User.jsx
 import React, { useState } from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
@@ -19,7 +18,7 @@ const User = () => {
                 },
                 body: JSON.stringify(datos),
             });
-    
+
             if (respuesta.ok) {
                 console.log('Usuario registrado correctamente');
             } else {
@@ -48,11 +47,11 @@ const User = () => {
         },
     });
 
-    
+
 
     const handleLogout = () => {
         localStorage.removeItem('user');
-        setIsRegistered(null); // Restablece el estado de registro
+        setIsRegistered(null);
     };
 
     const downloadCSV = async () => {
@@ -68,7 +67,7 @@ const User = () => {
                     id: comic.id,
                     title: comic.title,
                     pageCount: comic.pageCount || "No disponible",
-                    modified: comic.modified.slice(0, 10), // Formato de fecha
+                    modified: comic.modified.slice(0, 10),
                 });
             } catch (error) {
                 console.error("Error fetching comic data:", error);
@@ -76,8 +75,8 @@ const User = () => {
         }
 
         const csvContent = [
-            ['ID', 'Título', 'Número de Páginas', 'Fecha de Modificación'], // Encabezados
-            ...comicsData.map(comic => [comic.id, comic.title, comic.pageCount, comic.modified]) // Cada fila de datos
+            ['ID', 'Título', 'Número de Páginas', 'Fecha de Modificación'],
+            ...comicsData.map(comic => [comic.id, comic.title, comic.pageCount, comic.modified])
         ]
             .map(e => e.join(","))
             .join("\n");

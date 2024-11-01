@@ -10,10 +10,8 @@ const ComicDetails = ({ comic, onClose }) => {
     const handleFavorite = () => {
         let updatedFavorites;
         if (isFavorite) {
-            // Si ya es favorito, eliminarlo
             updatedFavorites = favorites.filter(id => id !== comic.id);
         } else {
-            // Si no es favorito, agregarlo
             updatedFavorites = [...favorites, comic.id];
         }
         setFavorites(updatedFavorites);
@@ -35,11 +33,11 @@ const ComicDetails = ({ comic, onClose }) => {
                             />
                         )}<br></br>
                         <button
-                        className={`favoriteButton ${isFavorite ? 'favorite' : 'notFavorite'}`}
-                        onClick={handleFavorite}
-                    >
-                        {isFavorite ? '❤️' : '🤍'}
-                    </button>
+                            className={`favoriteButton ${isFavorite ? 'favorite' : 'notFavorite'}`}
+                            onClick={handleFavorite}
+                        >
+                            {isFavorite ? '❤️' : '🤍'}
+                        </button>
                     </div>
                 </div>
                 <p><strong>Fecha de modificación:</strong> {comic.modified.slice(0, 10)}</p>

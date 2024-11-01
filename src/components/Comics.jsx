@@ -1,4 +1,3 @@
-// comics.jsx
 import React, { useState, useEffect } from 'react';
 import ComicDetails from './ComicDetails';
 import './Comics.css';
@@ -51,11 +50,11 @@ const Comics = () => {
 
     const handleFavorite = (comicId) => {
         const newFavorites = favorites.includes(comicId)
-            ? favorites.filter(id => id !== comicId) // Eliminar de favoritos
-            : [...favorites, comicId]; // Agregar a favoritos
+            ? favorites.filter(id => id !== comicId)
+            : [...favorites, comicId];
 
-        setFavorites(newFavorites); // Actualiza el estado de favoritos
-        localStorage.setItem('favorites', JSON.stringify(newFavorites)); // Actualiza localStorage
+        setFavorites(newFavorites);
+        localStorage.setItem('favorites', JSON.stringify(newFavorites));
     };
 
     return (
@@ -63,11 +62,11 @@ const Comics = () => {
             <div className="gridStyle">
                 {comics.map((comic) => {
                     const isFavorite = favorites.includes(comic.id);
-                    const cardClass = isFavorite ? 'comicCardStyle favoriteCard' : 'comicCardStyle'; // Clase condicional
+                    const cardClass = isFavorite ? 'comicCardStyle favoriteCard' : 'comicCardStyle';
 
                     return (
                         <div className={cardClass} key={comic.id}>
-                            <div onClick={() => handleComicClick(comic)}> {/* Cambiado a función de flecha */}
+                            <div onClick={() => handleComicClick(comic)}>
                                 <div className="comicTitle">
                                     <h3>{comic.title}</h3>
                                 </div>
@@ -85,7 +84,7 @@ const Comics = () => {
                                 <button
                                     className={`favoriteButton ${isFavorite ? 'favorite' : 'notFavorite'}`}
                                     onClick={(e) => {
-                                        e.stopPropagation(); // Evitar que el click del botón dispare el evento de la tarjeta
+                                        e.stopPropagation();
                                         handleFavorite(comic.id);
                                     }}
                                 >

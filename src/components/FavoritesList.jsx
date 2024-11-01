@@ -1,13 +1,12 @@
-// Profile.jsx
 import React, { useState, useEffect } from 'react';
 import './Comics.css';
 import ComicDetails from './ComicDetails';
 
 const Profile = () => {
-    const [comics, setComics] = useState([]); // Almacena los datos de los cómics favoritos
+    const [comics, setComics] = useState([]);
     const [selectedComic, setSelectedComic] = useState(null);
     const [favorites, setFavorites] = useState(() => JSON.parse(localStorage.getItem('favorites')) || []);
-    
+
     const PUBLIC_KEY = process.env.REACT_APP_MARVEL_PUBLIC_KEY;
     const BASE_URL = 'https://gateway.marvel.com/v1/public/comics';
 
