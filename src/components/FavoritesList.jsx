@@ -6,6 +6,7 @@ const Profile = () => {
     const [comics, setComics] = useState([]);
     const [selectedComic, setSelectedComic] = useState(null);
     const [favorites, setFavorites] = useState(() => JSON.parse(localStorage.getItem('favorites')) || []);
+    const [isLoading, setIsLoading] = useState(true);
 
     const PUBLIC_KEY = process.env.REACT_APP_MARVEL_PUBLIC_KEY;
     const BASE_URL = 'https://gateway.marvel.com/v1/public/comics';
@@ -24,6 +25,7 @@ const Profile = () => {
                 }
             }
             setComics(comicsData);
+            setIsLoading(false);
         };
 
         fetchFavoriteComics();
@@ -54,37 +56,41 @@ const Profile = () => {
     return (
         <div>
             <h2 className="whiteTitle">Mis Cómics Favoritos</h2>
-            <div className="gridStyle">
-                {comics.map((comic) => (
-                    <div
-                        key={comic.id}
-                        className={`comicCardStyle ${favorites.includes(comic.id) ? 'favoriteCard' : ''}`}
-                    >
-                        <div onClick={() => handleComicClick(comic)}>
-                            <div className="comicTitle">
-                                <h3>{comic.title}</h3>
-                            </div>
-                            <p>{formatDate(comic.modified.slice(0, 10)) || "Fecha no disponible"}</p>
-                            {comic.thumbnail && (
-                                <img
-                                    src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-                                    alt={comic.title}
-                                    style={{ width: "100%" }}
-                                />
-                            )}
-                        </div>
-                        <button
-                            className={`favoriteButton ${favorites.includes(comic.id) ? 'favorite' : 'notFavorite'}`}
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                handleFavorite(comic.id);
-                            }}
+            {isLoading ? (
+                <p className="loadingMessage">Loading</p> 
+            ) : (
+                <div className="gridStyle">
+                    {comics.map((comic) => (
+                        <div
+                            key={comic.id}
+                            className={`comicCardStyle ${favorites.includes(comic.id) ? 'favoriteCard' : ''}`}
                         >
-                            {favorites.includes(comic.id) ? '❤️' : '🤍'}
-                        </button>
-                    </div>
-                ))}
-            </div>
+                            <div onClick={() => handleComicClick(comic)}>
+                                <div className="comicTitle">
+                                    <h3>{comic.title}</h3>
+                                </div>
+                                <p>{formatDate(comic.modified.slice(0, 10)) || "Fecha no disponible"}</p>
+                                {comic.thumbnail && (
+                                    <img
+                                        src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                                        alt={comic.title}
+                                        style={{ width: "100%" }}
+                                    />
+                                )}
+                            </div>
+                            <button
+                                className={`favoriteButton ${favorites.includes(comic.id) ? 'favorite' : 'notFavorite'}`}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleFavorite(comic.id);
+                                }}
+                            >
+                                {favorites.includes(comic.id) ? '❤️' : '🤍'}
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            )}
             {selectedComic && (
                 <ComicDetails comic={selectedComic} onClose={handleCloseDetails} />
             )}

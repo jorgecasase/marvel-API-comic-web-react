@@ -9,6 +9,7 @@ const Comics = () => {
     const [favorites, setFavorites] = useState(() => {
         return JSON.parse(localStorage.getItem('favorites')) || [];
     });
+    const [isLoading, setIsLoading] = useState(true);
     const PUBLIC_KEY = process.env.REACT_APP_MARVEL_PUBLIC_KEY;
     const BASE_URL = 'https://gateway.marvel.com/v1/public/comics';
 
@@ -30,6 +31,9 @@ const Comics = () => {
                 setComics(sortedComics);
             } catch (error) {
                 console.error("Error fetching comics:", error);
+            }
+            finally{
+                setIsLoading(false);
             }
         };
         fetchComics();
@@ -59,42 +63,46 @@ const Comics = () => {
 
     return (
         <div>
-            <div className="gridStyle">
-                {comics.map((comic) => {
-                    const isFavorite = favorites.includes(comic.id);
-                    const cardClass = isFavorite ? 'comicCardStyle favoriteCard' : 'comicCardStyle';
+            {isLoading ? ( 
+                <p className="loadingMessage">Loading...</p>
+            ) : (
+                <div className="gridStyle">
+                    {comics.map((comic) => {
+                        const isFavorite = favorites.includes(comic.id);
+                        const cardClass = isFavorite ? 'comicCardStyle favoriteCard' : 'comicCardStyle';
 
-                    return (
-                        <div className={cardClass} key={comic.id}>
-                            <div onClick={() => handleComicClick(comic)}>
-                                <div className="comicTitle">
-                                    <h3>{comic.title}</h3>
+                        return (
+                            <div className={cardClass} key={comic.id}>
+                                <div onClick={() => handleComicClick(comic)}>
+                                    <div className="comicTitle">
+                                        <h3>{comic.title}</h3>
+                                    </div>
+
+                                    <p>{formatDate(comic.modified.slice(0, 10)) || "Fecha de modificación no disponible"}</p>
+                                    {comic.thumbnail && (
+                                        <img
+                                            src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                                            alt={comic.title}
+                                            style={{ width: "100%" }}
+                                        />
+                                    )}
                                 </div>
-
-                                <p>{formatDate(comic.modified.slice(0, 10)) || "Fecha de modificación no disponible"}</p>
-                                {comic.thumbnail && (
-                                    <img
-                                        src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-                                        alt={comic.title}
-                                        style={{ width: "100%" }}
-                                    />
-                                )}
+                                <div>
+                                    <button
+                                        className={`favoriteButton ${isFavorite ? 'favorite' : 'notFavorite'}`}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleFavorite(comic.id);
+                                        }}
+                                    >
+                                        {isFavorite ? '❤️' : '🤍'}
+                                    </button>
+                                </div>
                             </div>
-                            <div>
-                                <button
-                                    className={`favoriteButton ${isFavorite ? 'favorite' : 'notFavorite'}`}
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleFavorite(comic.id);
-                                    }}
-                                >
-                                    {isFavorite ? '❤️' : '🤍'}
-                                </button>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
+                        );
+                    })}
+                </div>
+            )}
             {selectedComic && (
                 <ComicDetails comic={selectedComic} onClose={handleCloseDetails} />
             )}
