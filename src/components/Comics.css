@@ -53,3 +53,21 @@
 .comicTitle{
   height: 100px;
 }
+
+.loadingMessage {
+    font-size: 3rem;
+    color: #f2f0f0;
+    text-align: center;
+    margin-top: 10vh; /* Centra el mensaje verticalmente */
+    font-weight: bold;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
