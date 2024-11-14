@@ -17,14 +17,16 @@ const Comics = () => {
         const fetchComics = async () => {
             try {
                 const response = await fetch(
-                    `${BASE_URL}?orderBy=-modified&limit=20&apikey=${PUBLIC_KEY}`
+                    `${BASE_URL}?orderBy=-modified&limit=60&apikey=${PUBLIC_KEY}`
                 );
                 if (!response.ok) {
                     throw new Error("Error fetching data");
                 }
                 const data = await response.json();
-
-                const sortedComics = data.data.results.sort((a, b) =>
+                const validComics = data.data.results.filter(comic =>
+                    comic.modified && !isNaN(new Date(comic.modified))
+                );
+                const sortedComics = validComics.sort((a, b) =>
                     new Date(b.modified) - new Date(a.modified)
                 );
 
