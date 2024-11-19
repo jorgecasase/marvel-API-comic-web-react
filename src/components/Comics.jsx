@@ -12,6 +12,7 @@ const Comics = () => {
     const [isLoading, setIsLoading] = useState(true);
     const PUBLIC_KEY = process.env.REACT_APP_MARVEL_PUBLIC_KEY;
     const BASE_URL = 'https://gateway.marvel.com/v1/public/comics';
+    console.log(process.env.REACT_APP_MARVEL_PUBLIC_KEY)
 
     useEffect(() => {
         const fetchComics = async () => {
